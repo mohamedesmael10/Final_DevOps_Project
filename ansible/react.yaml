@@ -1,0 +1,78 @@
+---
+- name: Setup Docker and run container
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Update apt cache
+      ansible.builtin.apt:
+         update_cache: yes
+
+    - name: Install prerequisites
+      apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+          - python3-pip  # Ensure pip is installed
+        state: present
+        update_cache: yes
+
+    - name: Add Docker GPG key
+      shell: |
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+
+    - name: Add Docker repository
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu focal stable
+        state: present
+
+    - name: Install Docker
+      apt:
+        name: docker-ce
+        state: present
+        update_cache: yes
+
+    - name: Ensure Docker service is running
+      systemd:
+        name: docker
+        state: started
+        enabled: yes
+
+        
+    - name: Add user to Docker group
+      ansible.builtin.user:
+        name: "{{ ansible_user }}"
+        groups: docker
+        append: true
+        
+    - name: Restart Docker service
+      ansible.builtin.service:
+        name: docker
+        state: restarted        
+        
+    - name: Pull the latest version of the Docker image
+      ansible.builtin.command: docker pull mohamedesmael/devops_final_project:latest
+      changed_when: false  # This task doesn't modify the state if the image is already up to date
+
+    - name: Check if the container is already running
+      ansible.builtin.command: docker ps -q -f name=devops_final_project
+      register: container_check
+      changed_when: false  # Only checking, so no change reported
+    - name: Stop the existing Docker container if it is running
+      ansible.builtin.command: docker stop devops_final_project
+      when: container_check.stdout != ""
+      changed_when: container_check.stdout != ""  # Mark change only if container is stopped
+
+    - name: Remove the existing Docker container if it exists
+      ansible.builtin.command: docker rm devops_final_project
+      when: container_check.stdout != ""
+      changed_when: container_check.stdout != ""  # Mark change only if container is removed
+
+    - name: Run the latest version of the Docker image
+      ansible.builtin.command: docker run -d --name devops_final_project -p 3000:80 mohamedesmael/devops_final_project:latest
+      when: container_check.stdout == ""  # Only run if the container is not already running
+      changed_when: true  # This task changes the state by running the container      
+      
+      

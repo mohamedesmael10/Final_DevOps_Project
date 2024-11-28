@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/myreads.aelzagh.com/static/css/main.056abbfa.chunk.css",
+    "main.js": "/myreads.aelzagh.com/static/js/main.a635c216.chunk.js",
+    "main.js.map": "/myreads.aelzagh.com/static/js/main.a635c216.chunk.js.map",
+    "runtime-main.js": "/myreads.aelzagh.com/static/js/runtime-main.bb3014f8.js",
+    "runtime-main.js.map": "/myreads.aelzagh.com/static/js/runtime-main.bb3014f8.js.map",
+    "static/js/2.a912ddbb.chunk.js": "/myreads.aelzagh.com/static/js/2.a912ddbb.chunk.js",
+    "static/js/2.a912ddbb.chunk.js.map": "/myreads.aelzagh.com/static/js/2.a912ddbb.chunk.js.map",
+    "index.html": "/myreads.aelzagh.com/index.html",
+    "static/css/main.056abbfa.chunk.css.map": "/myreads.aelzagh.com/static/css/main.056abbfa.chunk.css.map",
+    "static/js/2.a912ddbb.chunk.js.LICENSE.txt": "/myreads.aelzagh.com/static/js/2.a912ddbb.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/myreads.aelzagh.com/static/media/arrow-drop-down.4378492a.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.bb3014f8.js",
+    "static/js/2.a912ddbb.chunk.js",
+    "static/css/main.056abbfa.chunk.css",
+    "static/js/main.a635c216.chunk.js"
+  ]
+}
