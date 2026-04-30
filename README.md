@@ -2,6 +2,11 @@
 
 This project is a Terraform-based infrastructure setup for a DevOps environment. It includes modules for various AWS resources such as VPC, subnets, security groups, load balancers, and more. Additionally, it uses Ansible for configuration management.
 
+## Architecture Diagram
+
+![Screenshot 1](https://github.com/mohamedesmael10/Final_DevOps_Project/blob/main/Shots/01.png)
+![Screenshot 2](https://github.com/mohamedesmael10/Final_DevOps_Project/blob/main/Shots/02.png)
+
 ## Prerequisites
 
 - [Terraform](https://www.terraform.io/downloads.html) installed
